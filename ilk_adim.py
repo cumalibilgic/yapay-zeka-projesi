@@ -8,3 +8,10 @@ bias = 0.1
 # Nöronun yaptığı tek şey bu:
 sonuc = np.dot(girdi, agirlik) + bias
 print("Nöron çıktısı:", sonuc)
+
+# Aktivasyon fonksiyonu (ReLU)
+def relu(x):
+    return max(0, x)
+
+aktivasyon = relu(sonuc)
+print("Aktivasyon sonrası:", aktivasyon)
