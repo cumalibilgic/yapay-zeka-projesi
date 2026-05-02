@@ -1,26 +1,25 @@
 import numpy as np
 
 # --- TEK NÖRON ---
-girdi = np.array([1.5, 0.8, 2.1])    # 3 giriş özelliği
-agirlik = np.array([0.4, -0.2, 0.7]) # her özelliğin ağırlığı
+girdi = np.array([1.5, 0.8, 2.1])
+agirlik = np.array([0.4, -0.2, 0.7])
 bias = 0.1
 
 sonuc = np.dot(girdi, agirlik) + bias
 print("Nöron çıktısı:", sonuc)
 
-# Aktivasyon fonksiyonu (ReLU)
 def relu(x):
     return max(0, x)
 
 aktivasyon = relu(sonuc)
 print("Aktivasyon sonrası:", aktivasyon)
 
-# --- KATMAN (4 nöron aynı anda) ---
+# --- 1. KATMAN (4 nöron) ---
 katman_agirliklari = np.array([
-    [0.4, -0.2,  0.7],  # 1. nöron
-    [0.1,  0.5, -0.3],  # 2. nöron
-    [-0.6, 0.8,  0.2],  # 3. nöron
-    [0.9, -0.1,  0.4],  # 4. nöron
+    [0.4, -0.2,  0.7],
+    [0.1,  0.5, -0.3],
+    [-0.6, 0.8,  0.2],
+    [0.9, -0.1,  0.4],
 ])
 
 katman_bias = np.array([0.1, -0.2, 0.3, 0.0])
@@ -30,3 +29,18 @@ print("Katman çıktısı:", katman_sonuc)
 
 katman_aktivasyon = np.maximum(0, katman_sonuc)
 print("Katman aktivasyon:", katman_aktivasyon)
+
+# --- 2. KATMAN (3 nöron) ---
+katman2_agirliklari = np.array([
+    [0.3, -0.5,  0.2,  0.8],
+    [-0.4, 0.6,  0.9, -0.1],
+    [0.7,  0.2, -0.3,  0.5],
+])
+
+katman2_bias = np.array([0.1, 0.0, -0.2])
+
+katman2_sonuc = np.dot(katman2_agirliklari, katman_aktivasyon) + katman2_bias
+print("2. Katman çıktısı:", katman2_sonuc)
+
+katman2_aktivasyon = np.maximum(0, katman2_sonuc)
+print("2. Katman aktivasyon:", katman2_aktivasyon)
