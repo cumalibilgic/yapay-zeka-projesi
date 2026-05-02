@@ -44,3 +44,19 @@ print("2. Katman çıktısı:", katman2_sonuc)
 
 katman2_aktivasyon = np.maximum(0, katman2_sonuc)
 print("2. Katman aktivasyon:", katman2_aktivasyon)
+
+# --- ÇIKTI KATMANI ---
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+cikti_agirliklari = np.array([0.5, -0.3, 0.8])
+cikti_bias = 0.0
+
+cikti_sonuc = np.dot(cikti_agirliklari, katman2_aktivasyon) + cikti_bias
+tahmin = sigmoid(cikti_sonuc)
+print("Tahmin (0-1 arası):", tahmin)
+
+if tahmin >= 0.5:
+    print("Sonuç: POZİTİF")
+else:
+    print("Sonuç: NEGATİF")
